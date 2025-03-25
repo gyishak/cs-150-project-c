@@ -18,7 +18,10 @@ The first story that could be derived by exploring the data is when a good time 
 “Real Median Household Income in New York.” FRED, 11 Sept. 2024, fred.stlouisfed.org/series/MEHOINUSNYA672N. <br><br>
 “All-Transactions House Price Index for New York.” FRED, 25 Feb. 2025, fred.stlouisfed.org/series/NYSTHPI. <br><br>
 NYSERDA, www.nyserda.ny.gov/Energy-Prices/Motor-Gasoline/Monthly-Average-Motor-Gasoline-Prices#NY-Statewide. Accessed 24 Mar. 2025. <br><br>
-NYSERDA, www.nyserda.ny.gov/Energy-Prices/Electricity/Monthly-Avg-Electricity-Residential. Accessed 24 Mar. 2025. 
+NYSERDA, www.nyserda.ny.gov/Energy-Prices/Electricity/Monthly-Avg-Electricity-Residential. Accessed 24 Mar. 2025. <br><br>
+https://chatgpt.com/
+
+
 
 
 

@@ -1,8 +1,6 @@
-from dash import Dash, dcc, html, dash_table, Input, Output, State, callback_context
+from dash import Dash, dcc, html, Input, Output, callback_context
 import dash_bootstrap_components as dbc
-import plotly.graph_objects as go
 import pandas as pd
-import plotly.express as px
 
 from Learn import learn_card
 from Play import input_groups, time_period_card, time_period_data
@@ -41,7 +39,6 @@ tabs=dbc.Tabs([
   id="tabs",
   active_tab="tab-2"
 )
-
 
 """
 ===========================================================================
@@ -124,20 +121,16 @@ def update_totals(starting_amount,planning_time, start_years):
   planning_time = 1 if planning_time is None else planning_time
   start_years = MIN_YEAR if start_years is None else int(start_years)
 
-
-
-  # calculate valid planning time start yr
   max_time = MAX_YEAR + 1 - start_years
   planning_time = min(max_time, planning_time)
   if start_years + planning_time > MAX_YEAR:
-      start_years = min(df.iloc[-planning_time, 0], MAX_YEAR)  # 0 is Year column
+      start_years = min(df.iloc[-planning_time, 0], MAX_YEAR)
 
 
   ds = backtest(planning_time, start_years)
   dc= backCap(planning_time, start_years)
   dt= backSec(planning_time, start_years)
   db = backBar(planning_time, start_years)
-
 
   fig = make_line_chart(ds)
   fig2=secondLine(dc, dt) if not dc.empty else thirdChart(dt)

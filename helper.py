@@ -1,8 +1,7 @@
-from dash import Dash, dcc, html, dash_table, Input, Output, State, callback_context
+from dash import Dash, dash_table
 import dash_bootstrap_components as dbc
 import plotly.graph_objects as go
 import pandas as pd
-import plotly.express as px
 
 
 app = Dash(__name__, external_stylesheets=[dbc.themes.SKETCHY, dbc.icons.FONT_AWESOME])

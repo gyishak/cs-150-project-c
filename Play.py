@@ -1,10 +1,6 @@
 from dash import Dash, dcc, html, dash_table, Input, Output, State, callback_context
 import dash_bootstrap_components as dbc
-import plotly.graph_objects as go
 import pandas as pd
-import plotly.express as px
-
-from helper import backtest, backCap, backSec, backBar, make_line_chart, secondLine, make_bar
 
 app = Dash(__name__, external_stylesheets=[dbc.themes.SKETCHY, dbc.icons.FONT_AWESOME])
 df = pd.read_csv("assets/data1.csv")

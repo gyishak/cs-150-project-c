@@ -1,11 +1,7 @@
 from dash import Dash, dcc, html, dash_table, Input, Output, State, callback_context
 import dash_bootstrap_components as dbc
-import plotly.graph_objects as go
 import pandas as pd
-import plotly.express as px
 
-from helper import backtest, backCap, backSec, backBar, make_line_chart, secondLine, make_bar, house_price_table, \
-    income_table, trans_table, ele_table
 
 app = Dash(__name__, external_stylesheets=[dbc.themes.SKETCHY, dbc.icons.FONT_AWESOME])
 df = pd.read_csv("assets/data1.csv")
@@ -38,22 +34,17 @@ Bar graph depicting income levels across the years from 1990 to 2023.
 Line graph comparing gasoline prices ($ per gallon) and electricity prices
 ($ per kilowatt-hour) from 2012 to 2023.
      
-  What type trends do you notice regarding the house prices compared to the household
-  income? What about the gasoline and electricity prices?
+  What type trends do you notice the gasoline and electricity prices?
 
 
   Use the interactive elements to understand how key time periods, like
-  COVID-19, have influenced the fluctuations in home prices, income, gasoline prices,
+  COVID-19, have influenced the fluctuations in the home price index, income, gasoline prices,
   and electricity prices.
 
 
   Please look through the Results tab to see all the data used for this study.
  
   Thank you!
-
-    
-    
-    
 
 	
 '''
