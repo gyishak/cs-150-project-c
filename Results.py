@@ -33,9 +33,9 @@ footer = html.Div(
     dcc.Markdown(
         """
          [Household Income Source](https://fred.stlouisfed.org/series/MEHOINUSNYA672N)
-         [House Price Source](https://fred.stlouisfed.org/series/NYSTHPI)
-         [Gasoline Price Source] ( https://www.nyserda.ny.gov/Energy-Prices/Motor-Gasoline/Monthly-Average-Motor-Gasoline-Prices#NY-Statewide )
-         [Electricity Expenditures Source](https://www.nyserda.ny.gov/Energy-Prices/Electricity/Monthly-Avg-Electricity-Residential)
+         [House Prices Source](https://fred.stlouisfed.org/series/NYSTHPI)
+         [Gasoline Prices Source] ( https://www.nyserda.ny.gov/Energy-Prices/Motor-Gasoline/Monthly-Average-Motor-Gasoline-Prices#NY-Statewide )
+         [Electricity Prices Source](https://www.nyserda.ny.gov/Energy-Prices/Electricity/Monthly-Avg-Electricity-Residential)
         """
     ),
     className="p-2 mt-5 text-white small",

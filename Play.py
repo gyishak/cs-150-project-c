@@ -50,7 +50,7 @@ start_amount = dbc.InputGroup(
         disabled=True,
           type="number",
           min=10,
-          value=24.7,
+          value=2.15,
       ),
   ],
   className="mb",

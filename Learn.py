@@ -28,8 +28,8 @@ learn_text=dcc.Markdown(
     ''' 
 Please explore the three graphs:
     
-1. House Prices Overtime
-Line graph depicting trend of house prices from 1990 to 2023.
+1. House Price Index Overtime
+Line graph depicting trend of house price index from 1990 to 2023.
 	
 2. Income Spanning Overtime
 Bar graph depicting income levels across the years from 1990 to 2023.

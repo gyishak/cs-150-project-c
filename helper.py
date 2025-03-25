@@ -85,18 +85,18 @@ def make_line_chart(dataHouse):
       go.Scatter(
           x=dataHouse["Year"].tolist(),
           y=dataHouse["Price"].tolist(),
-          name="House Prices",
+          name="House Price Index",
           marker_color="#008000"
       )
    )
    fig.update_layout(
-      title=f"House Prices Spanning {yrs} Years",
+      title=f"House Price Index Spanning {yrs} Years",
       template="none",
       showlegend=True,
       legend=dict(x=0.01, y=0.99),
       height=400,
       margin=dict(l=40, r=10, t=60, b=55),
-      yaxis=dict(tickprefix="$", fixedrange=True),
+      yaxis=dict(title="House Price Index", fixedrange=True),
       xaxis=dict(title="Year", fixedrange=True, dtick=dtick), )
    return fig
 
@@ -168,7 +168,7 @@ house_price_table=dash_table.DataTable(
    id="house_price_tabl",
    columns=[
                {"name": "Year", "id": "Year"},
-               {"name": "Home Price ($)", "id": "Price"}
+               {"name": "Home Price Index ", "id": "Price"}
            ],
    data=data1,
    page_size=15,

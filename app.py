@@ -52,7 +52,7 @@ app.layout = dbc.Container([
   dbc.Row(
       dbc.Col([
           html.H1([
-              "New York"],
+              "Cost of Living in New York"],
               className="text-center bg-primary text-white p-2",
           ),
         html.H2([
