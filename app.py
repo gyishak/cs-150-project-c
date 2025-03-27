@@ -5,40 +5,28 @@ import pandas as pd
 from Learn import learn_card
 from Play import input_groups, time_period_card, time_period_data
 from Results import house_price_card, footer
-from helper import backtest, backCap, backSec, backBar, make_line_chart, secondLine, make_bar, thirdChart
+from helper import backtest, backCap, backSec, backBar, make_line_chart, secondLine, make_bar, thirdChart, make_bar2, \
+    return_dataset, food_pric_calc, electric_price, find_count
+from mynewyork import myNewYork_card, myincome, housePrice, foodPrice
 
 app = Dash(__name__, external_stylesheets=[dbc.themes.SKETCHY, dbc.icons.FONT_AWESOME])
 df = pd.read_csv("assets/data1.csv")
 dataHouse=pd.read_csv("assets/homeprices.csv")
 dataTransp=pd.read_csv("assets/transportation.csv")
 electric=pd.read_csv("assets/electric.csv")
-
+food=pd.read_csv("assets/new_food.csv")
+county_house=pd.read_csv("assets/county_house_price.csv")
 
 data1 = pd.read_csv("assets/homeprices.csv").to_dict('records')
 data2 = pd.read_csv("assets/data1.csv").to_dict('records')
 data3= pd.read_csv("assets/transportation.csv").to_dict('records')
 data4 = pd.read_csv("assets/electric.csv").to_dict('records')
-
+data5= pd.read_csv("assets/new_food.csv").to_dict('records')
+data6=pd.read_csv("assets/county_house_price.csv").to_dict('records')
 
 MAX_YEAR=df.Year.max()
 MIN_YEAR=df.Year.min()
 START_YR=1990
-
-"""
-===========================================================================
-Tab Layout
-"""
-
-tabs=dbc.Tabs([
-  dbc.Tab([learn_card], tab_id="tab1", label="Learn"),
-  dbc.Tab([input_groups, time_period_card],
-          tab_id="tab-2", label="Play", className="pb-4",),
-  dbc.Tab([house_price_card],
-          tab_id="tab-3", label="Results"),
-],
-  id="tabs",
-  active_tab="tab-2"
-)
 
 """
 ===========================================================================
@@ -61,32 +49,93 @@ app.layout = dbc.Container([
   ),
   dbc.Row(
       [
-          dbc.Col(tabs, width=12, lg=5, className="mt-4 border"),
-          dbc.Col([
-              dcc.Graph(id="bar_chart",figure=make_bar(df),className="pb-4"),
-              dcc.Graph(id="returns_chart", figure=make_line_chart(dataHouse),className="pb-4"),
-              dcc.Graph(id="line_second", figure=secondLine(electric, dataTransp),className="pb-4"),
-          ],
-          width=12,
-          lg=7,
-          className="pt-4",
-          ),
+          dbc.Tabs([
+              dbc.Tab([learn_card], tab_id="tab1", label="Learn"),
+
+    dbc.Tab([input_groups, time_period_card,
+           dcc.Graph(id="bar_chart",figure=make_bar(df),className="pb-4"),
+           dcc.Graph(id="returns_chart", figure=make_line_chart(dataHouse),className="pb-4"),
+           dcc.Graph(id="line_second", figure=secondLine(electric, dataTransp),className="pb-4")
+           ],
+          tab_id="tab-2", label="Play", className="pb-4",),
+dbc.Tab([myNewYork_card, myincome,
+            dbc.Row([
+            dbc.Col([
+                dcc.Graph(id="bar2", figure=make_bar2(df, myincome), className="pb-4"),
+                housePrice,
+                html.Div(id="county_incomes", children="My Counties:"),
+                foodPrice,
+                html.Div(id="food_price", children="Monthly Cost"),
+                #dcc.Input(id="month_food", type="number"),
+                html.Div(id="electric_price_month", children="Monthy Cost"),
+            ])
+                     ]),
+                ],
+          tab_id="tab-4", label="Your New York Life"),
+    dbc.Tab([house_price_card],
+          tab_id="tab-3", label="Results"),
+]),
+    ],
+    id="tabs",
+
+    ),
+    footer
       ],
-      className="ms-1"
-  ),
-  dbc.Row(
-      dbc.Col(
-          footer
-      )
-  ),
-],
-fluid=True,
-)
+      className="ms-1",
+      fluid=True,
+  )
+
 
 """
 ===========================================================================
 Callback
 """
+
+@app.callback(
+    Output("county_incomes", "children"),
+    Input("housePrice", "value"),
+    allow_duplicate=True,
+)
+def find_county(initial_house):
+    if initial_house is None:
+        return ""
+    ctx = callback_context
+    my_counts=find_count(county_house, initial_house)
+    return ', '.join(my_counts)
+
+
+
+@app.callback(
+    Output("food_price", "children"),
+    Output("electric_price_month", "children"),
+    Input("foodPrice", "value"),
+
+    allow_duplicate=True,
+)
+def update_food(foodPrice):
+  ctx = callback_context
+  month_electric = electric_price(electric)
+  month_electric= f"Monthly Electricity Price Per Month in 2023: ${month_electric:.2f}"
+  if foodPrice is None:
+      return  f"Monthly Food Price in NY Region for 2024: {0}", month_electric
+
+  x=food_pric_calc(food, foodPrice)
+  x= f"Monthly Food Price in NY Region for 2024: ${x:.2f}"
+  return  x,month_electric
+
+
+@app.callback(
+    Output("bar2", "figure"),
+    Input("myincome", "value"),
+    allow_duplicate=True,
+)
+def update_income(myincome):
+  ctx = callback_context
+  myincome= 0 if myincome is None else myincome
+  ds=return_dataset(df)
+  line_fig=make_bar2(ds, myincome)
+
+  return line_fig
 
 @app.callback(
   Output("planning_time", "value"),
@@ -97,7 +146,6 @@ Callback
   Input("time_period", "value"),
 )
 def update_time_period(planning_time, start_yr, period_number):
-  """syncs inputs and selected time periods"""
   ctx = callback_context
   input_id = ctx.triggered[0]["prop_id"].split(".")[0]
   if input_id == "time_period":

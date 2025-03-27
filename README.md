@@ -14,11 +14,24 @@ I took much information for SwD for my dashboard. Something that I  wanted to im
 Lastly, in my presentation, there was some controversy with my use of a bar graph instead of a line graph when depicting income prices. This decision was not made hastily and did take much thought. I understand the reasons and respect why SwD would not approve of this graph. Personally speaking, when I come across a dashboard online it is very hard to focus when there are the same graphs over and over again. I enjoy versatile graphs that will draw my attention. Currently, we live in a world where users do not have the same attention span as 10 years ago, which is when this book was published. With recent developments in new social media, the average user needs a dashboard to cater to that. My use of a bar graph to depict income was to add versatility to my dashboard but keep the message and story as well. I also wanted to take note that my data spread out enough that the majority of users I asked were able to see the difference between any two bars. I also included a hover component which will tell the users the income amount if they would like more detail.
 # Stories:
 The first story that could be derived by exploring the data is when a good time to buy a house would be in New York. This data spans 1990 to 2023 and users are able to use the data to see if the cost of homes are declining or rising to pick the right time to buy a home in New York. Another story that could be derived from the data is the significant jump in gasoline prices from 2020 to 2022. Looking at the data from 2012, that time from 2020-2022 is the largest price jump. There was a decline in 2023 but the price is one of the largest since 2015. Lastly, as gasoline prices are on a modest decline, for now, users can compare this to a large incline in electricity prices from 2022 to 2023. This can help users make informed decisions about possibly taking steps to reduce how much electricity they use due to the rise in prices.  
+# Extra Credit Changes:
+I made a number of changes for my extra credit. The first change I made was fixing the "Income Graph" in the Play tab
+from a bar graph to a line graph instead. During my presentation, it was recommended I change my income bar graph to a 
+line graph due to some objections in the book. After doing some research, I decided it would be best to change the bar graph to a line 
+for users to see the difference between values. A line graph would better showcase this. Another change I made was a new tab called "Your New York Life". This is an interactive tab that allows users to visualize their life in New York
+and how this reality would look like. The first interactive element of this tab enables users to input their yearly income and see where they fall from the average income in the state and a choice of year. This is the first step in seeing if New York State is the state for the user! The next element of this tab allows users to input
+how much they are willing to spend on buying a house and based on this value it displays what counties in New York would satisfy that amount.
+The next element of this page, Consumer Price Index for Food,  allows users to enter their monthly food price budget and how that price would change in the New York and Eastern Region. 
+The last element for this page displays the monthly electricity price during 2023 so users are able to get an idea on how much they would be spending in New York for electricity.
+
 # Work Cited:
 “Real Median Household Income in New York.” FRED, 11 Sept. 2024, fred.stlouisfed.org/series/MEHOINUSNYA672N. <br><br>
 “All-Transactions House Price Index for New York.” FRED, 25 Feb. 2025, fred.stlouisfed.org/series/NYSTHPI. <br><br>
 NYSERDA, www.nyserda.ny.gov/Energy-Prices/Motor-Gasoline/Monthly-Average-Motor-Gasoline-Prices#NY-Statewide. Accessed 24 Mar. 2025. <br><br>
 NYSERDA, www.nyserda.ny.gov/Energy-Prices/Electricity/Monthly-Avg-Electricity-Residential. Accessed 24 Mar. 2025. <br><br>
+“Consumer Price Index for All Urban Consumers: Food and Beverages in New York-Newark-Jersey City, NY-NJ-PA (CBSA).” FRED, 12 Mar. 2025, fred.stlouisfed.org/series/CUURA101SAF. <br><br>
+“Consumer Price Index for All Urban Consumers: Food in U.S. City Average.” FRED, 12 Mar. 2025, fred.stlouisfed.org/series/CPIUFDSL. <br><br>
+Residential Median Sale Price Information by County, www.tax.ny.gov/research/property/assess/sales/resmedian.htm. Accessed 26 Mar. 2025. <br><br>
 https://chatgpt.com/
 
 

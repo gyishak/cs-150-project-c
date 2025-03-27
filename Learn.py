@@ -40,6 +40,9 @@ Line graph comparing gasoline prices ($ per gallon) and electricity prices
   Use the interactive elements to understand how key time periods, like
   COVID-19, have influenced the fluctuations in the home price index, income, gasoline prices,
   and electricity prices.
+  
+  After this, take a look at the 'Your New York Life' tab that allows users to envision their life in New York. It allows users to use their income, house price, 
+  and food price to see how those may differ in the New York Region.
 
 
   Please look through the Results tab to see all the data used for this study.
@@ -49,11 +52,10 @@ Line graph comparing gasoline prices ($ per gallon) and electricity prices
 	
 '''
 )
-
 # ========= Learn Tab  Components
 learn_card = dbc.Card(
     [
-        dbc.CardHeader("Hello, New Yorkers!"),
+        dbc.CardHeader("Hello, Potential New Yorkers!"),
         dbc.CardBody(learn_text),
     ],
 )

@@ -9,12 +9,15 @@ df = pd.read_csv("assets/data1.csv")
 dataHouse=pd.read_csv("assets/homeprices.csv")
 dataTransp=pd.read_csv("assets/transportation.csv")
 electric=pd.read_csv("assets/electric.csv")
-
+food=pd.read_csv("assets/new_food.csv")
+county_house=pd.read_csv("assets/county_house_price.csv")
 
 data1 = pd.read_csv("assets/homeprices.csv").to_dict('records')
 data2 = pd.read_csv("assets/data1.csv").to_dict('records')
 data3= pd.read_csv("assets/transportation.csv").to_dict('records')
 data4 = pd.read_csv("assets/electric.csv").to_dict('records')
+data5= pd.read_csv("assets/new_food.csv").to_dict('records')
+data6= pd.read_csv("assets/county_house_price.csv").to_dict('records')
 
 
 MAX_YEAR=df.Year.max()
@@ -23,8 +26,29 @@ START_YR=1990
 
 """
 ===========================================================================
-Helper Funtion
+Helper Function
 """
+def find_count(county_house, initial_house):
+    county_list=[]
+    x=1
+    for x in range(len(county_house)):
+        if county_house.iloc[x,1]<=initial_house:
+            county_list.append(county_house.iloc[x,0])
+    return county_list
+
+def electric_price(electric):
+    day_electric = electric.iloc[12, 1]
+    month_electric=(day_electric*899)/12
+    return month_electric
+
+def food_pric_calc(food, food_Price):
+    current_food=food.iloc[3, 1]
+    current_food_avg=food.iloc[3, 2]
+    final_food=(current_food/current_food_avg) *food_Price
+    return final_food
+
+def return_dataset(df):
+    return df
 def backCap(nper, start_yr):
    end_yr = start_yr + nper - 1
    dc = electric[(electric["Year"] >= start_yr) & (electric["Year"] <= end_yr)]
@@ -53,18 +77,50 @@ def backSec(nper, start_yr):
 ===========================================================================
 Chart
 """
+
+def make_bar2(df,myincome):
+   start = df .iloc[0]["Year"]
+   yrs = len(df)
+   fig = go.Figure()
+
+   fig.add_trace(
+       go.Scatter(
+           x=df["Year"].tolist(),
+           y=df["Income"].tolist(),
+           name="Income",
+           marker_color="#3B719F"
+       )
+   )
+
+   income_year=[2023]
+   income_num=[myincome]
+   fig.add_trace(
+       go.Scatter(
+           x=income_year,
+           y=income_num,
+           name="Your Income",
+           marker_color="#FF0000"
+       )
+   )
+   fig.update_layout(
+       title=f"Income Spanning {yrs} Years",
+       template="none",
+       yaxis=dict(tickprefix="$", fixedrange=True),
+       xaxis=dict(title="Year", fixedrange=True)
+    )
+   return fig
+
 def make_bar(df):
    start = df .iloc[0]["Year"]
    yrs = len(df)
-   fig = go.Figure(
-       data=[
-           go.Bar(
-               x=df["Year"],
-               y=df["Income"],
-               textposition="inside",
-               hoverinfo="x+y",
-           )
-       ]
+   fig = go.Figure()
+   fig.add_trace(
+       go.Scatter(
+           x=df["Year"].tolist(),
+           y=df["Income"].tolist(),
+           name="Income",
+           marker_color="#3B719F"
+       )
    )
    fig.update_layout(
        title=f"Income Spanning {yrs} Years",
@@ -100,7 +156,6 @@ def make_line_chart(dataHouse):
    return fig
 
 def thirdChart(dataTransp):
-    #start = dataTransp.iloc[0]["Year"]
     yrs = len(dataTransp)
     dtick = 1 if yrs < 16 else 2 if 16 <= yrs < 30 else 5
 
@@ -184,7 +239,6 @@ income_table=dash_table.DataTable(
    style_table={"overflowX": "scroll"}
 )
 
-
 trans_table=dash_table.DataTable(
    id="transp_table",
    columns=[
@@ -205,5 +259,27 @@ ele_table=dash_table.DataTable(
    page_size=15,
    style_table={"overflowX": "scroll"}
 )
+county_house_tab=dash_table.DataTable(
+   id="county_house",
+   columns=[
+               {"name": "County", "id": "Count"},
+               {"name": "Median House Price($) ", "id": "Price"}
+           ],
+   data=data6,
+   page_size=15,
+   style_table={"overflowX": "scroll"}
+)
+food_tab=dash_table.DataTable(
+   id="food_tab",
+   columns=[
+               {"name": "Year", "id": "Year"},
+               {"name": "CPI Food New York", "id": "food_ny"},
+                {"name": "CPI Food U.S.", "id": "food_us"}
+           ],
+   data=data5,
+   page_size=15,
+   style_table={"overflowX": "scroll"}
+)
+
 
 

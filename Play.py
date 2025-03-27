@@ -7,13 +7,14 @@ df = pd.read_csv("assets/data1.csv")
 dataHouse=pd.read_csv("assets/homeprices.csv")
 dataTransp=pd.read_csv("assets/transportation.csv")
 electric=pd.read_csv("assets/electric.csv")
+county_house=pd.read_csv("assets/county_house_price.csv")
 
 
 data1 = pd.read_csv("assets/homeprices.csv").to_dict('records')
 data2 = pd.read_csv("assets/data1.csv").to_dict('records')
 data3= pd.read_csv("assets/transportation.csv").to_dict('records')
 data4 = pd.read_csv("assets/electric.csv").to_dict('records')
-
+data6=pd.read_csv("assets/county_house_price.csv").to_dict('records')
 
 MAX_YEAR=df.Year.max()
 MIN_YEAR=df.Year.min()
